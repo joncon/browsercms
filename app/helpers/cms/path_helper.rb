@@ -123,6 +123,18 @@ module Cms
           resource.to_s
       end
     end
+    
+    #added by JC I am not sure why I need to due this but for some reason
+    #the EngineHelper#build method does not find the view.main_app method.
+    def method_missing method, *args, &block
+          method = method.to_s.gsub("main_app_", "")
+          if main_app.respond_to?(method)
+            main_app.send(method, *args)
+          else
+            super
+          end
+        end
+    
 
   end
 end
