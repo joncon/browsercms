@@ -6,7 +6,7 @@
         <%= able_to?(:edit_content, :publish_content) do %><li><%= link_to image_tag("cms/nav_sitemap#{'_on' if tab == :sitemap}.gif", :id => 'nav_sitemap_img'), cms.sitemap_path, :target => "_top" %></li><% end %>
         <%= able_to?(:edit_content, :publish_content) do %><li><%= link_to image_tag("cms/nav_content_library#{'_on' if tab == :content_library}.gif", :id => 'nav_content_library_img'), cms.content_library_path, :target => "_top" %></li><% end %>
         <%= able_to?(:administrate) do %><li><%= link_to image_tag("cms/nav_admin#{'_on' if tab == :administration}.gif", :id => 'nav_admin_img'), cms.administration_path, :target => "_top" %></li>
-          <li><%= link_to image_tag("/images/cms/nav_update_event#{'_on' if tab == :update_event}.png", :id => 'nav_update_event_img'), main_app.recent_events_path, :target => "_top" %></li>
+          <li><%= link_to image_tag("/assets/cms/nav_update_event#{'_on' if tab == :update_event}.png", :id => 'nav_update_event_img'), main_app.recent_events_path, :target => "_top" %></li>
           
           <% end %>
       </ul>
@@ -55,9 +55,9 @@
 
 <% unless tab == :update_event %>
       $('#nav_update_event_img').hover(function(){
-        $('#nav_update_event_img').attr('src', '/images/cms/nav_update_event_h.png');
+        $('#nav_update_event_img').attr('src', '/assets/cms/nav_update_event_h.png');
       }, function(){
-        $('#nav_update_event_img').attr('src', '/images/cms/nav_update_event.png');
+        $('#nav_update_event_img').attr('src', '/assets/cms/nav_update_event.png');
     });
 <% end %>
 
