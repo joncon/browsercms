@@ -95,6 +95,11 @@ class Cms::Page < ActiveRecord::Base
 
   # Publish all
   def after_publish
+    #add these two touch methods since we want to use last updated section_node as a caching key
+    #throughout app and publishing of page doesn't touch either page or section_node by default
+    touch
+    section_node.touch
+    ##end of obj touching
     self.reload # Get's the correct version number loaded
     self.connectors.for_page_version(self.version).all(:order => "position").each do |c|
       if c.connectable_type.constantize.publishable? && con = c.connectable
