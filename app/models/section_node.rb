@@ -1,4 +1,6 @@
 class SectionNode < ActiveRecord::Base
+  include Echo8::SectionNode
+  
   belongs_to :section
   belongs_to :node, :polymorphic => :true
 

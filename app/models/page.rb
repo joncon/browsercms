@@ -1,4 +1,5 @@
 class Page < ActiveRecord::Base
+  include Echo8::Page
   
   is_archivable
   flush_cache_on_change

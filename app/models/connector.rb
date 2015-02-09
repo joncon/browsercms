@@ -1,4 +1,5 @@
 class Connector < ActiveRecord::Base
+  include Echo8::Connector
   belongs_to :page
   belongs_to :connectable, :polymorphic => true
   

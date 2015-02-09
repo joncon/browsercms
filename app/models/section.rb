@@ -1,5 +1,5 @@
 class Section < ActiveRecord::Base
-
+  include Echo8::Section
   flush_cache_on_change
 
   #The node that links this section to its parent
@@ -35,12 +35,14 @@ class Section < ActiveRecord::Base
   before_destroy :deletable?
 
   attr_accessor :full_path
+  
+  #commenting out see 8echo8 monkey patch
 
-  def visible_child_nodes(options={})
-    children = child_nodes.of_type(["Section", "Page", "Link"]).all(:order => 'section_nodes.position')
-    visible_children = children.select{|sn| sn.visible?}
-    options[:limit] ? visible_children[0...options[:limit]] : visible_children
-  end
+  # def visible_child_nodes(options={})
+  #   children = child_nodes.of_type(["Section", "Page", "Link"]).all(:order => 'section_nodes.position')
+  #   visible_children = children.select{|sn| sn.visible?}
+  #   options[:limit] ? visible_children[0...options[:limit]] : visible_children
+  # end
 
   def all_children_with_name
     child_sections.map do |s|
@@ -117,17 +119,18 @@ class Section < ActiveRecord::Base
     end
     section
   end
-
+  
+  #commenting out. for monkey patch
   #The first page that is a decendent of this section
-  def first_page_or_link
-    section_node = child_nodes.of_type(['Link', 'Page']).first(:order => "section_nodes.position")
-    return section_node.node if section_node
-    sections.each do |s|
-      node = s.first_page_or_link
-      return node if node
-    end
-    nil
-  end
+  # def first_page_or_link
+  #   section_node = child_nodes.of_type(['Link', 'Page']).first(:order => "section_nodes.position")
+  #   return section_node.node if section_node
+  #   sections.each do |s|
+  #     node = s.first_page_or_link
+  #     return node if node
+  #   end
+  #   nil
+  # end
 
   def actual_path
     if root?
