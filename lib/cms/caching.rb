@@ -30,6 +30,14 @@ module Cms
         flush_caches
       end
     end
+    #don't want to use alias method chain here since we want default behavior
+    #this will only be for one offs
+    def flush_with_cache_store
+      if caching_enabled?
+        Rails.cache.clear
+        flush_caches
+      end
+    end
 
     private
 
